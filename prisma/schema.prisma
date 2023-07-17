@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Keyboard {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  color     String?
+  layout    String?
+  finish    String?
+  price     Int?
+  Audio     Audio[]
+}
+
+model KeySwitch {
+  id    Int     @id @default(autoincrement())
+  name  String
+  price Int
+  Audio Audio[]
+}
+
+model KeyCap {
+  id       Int     @id @default(autoincrement())
+  name     String
+  colorway String
+  price    Int
+  Audio    Audio[]
+}
+
+model Audio {
+  id            Int       @id @default(autoincrement())
+  keyboard      Keyboard  @relation(fields: [keyboardId], references: [id])
+  keySwitch     KeySwitch @relation(fields: [keySwitchId], references: [id])
+  keyCap        KeyCap    @relation(fields: [keyCapId], references: [id])
+  key1AudioUrl  String
+  spaceAudioUrl String
+  stabAudioUrl  String
+  keyboardId    Int
+  keySwitchId   Int
+  keyCapId      Int
+
+  @@index([keyboardId, keySwitchId, keyCapId])
+  @@unique(fields: [keyboardId, keySwitchId, keyCapId], name: "audio_identifier")
+}
