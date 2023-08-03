@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Once both all system dependencies and database migrations are installed, run \r ```\r npm i\r npm run build\r npm run dev\r ```\r to start the server.",
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
@@ -40,5 +40,14 @@
       "eslint",
       "prettier --write"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transophia4/Noises.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/transophia4/Noises/issues"
+  },
+  "homepage": "https://github.com/transophia4/Noises#readme"
 }
